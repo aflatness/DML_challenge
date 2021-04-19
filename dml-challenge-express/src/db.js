@@ -1,11 +1,11 @@
 const { Sequelize, Model, DataTypes } = require('sequelize')
-// const { join } = require('path')
+const { join } = require('path')
 
-const sequelize = new Sequelize('sqlite::memory:')
-// const sequelize = new Sequelize({
-//   dialect: 'sqlite',
-//   storage: join(__dirname, '../database.sqlite')
-// })
+// const sequelize = new Sequelize('sqlite::memory:')
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: join(__dirname, '../database.sqlite')
+})
 
 class Surveys extends Model {}
 Surveys.init({

@@ -1,6 +1,7 @@
 const createError = require('http-errors')
 const express = require('express')
 const logger = require('morgan')
+const cors = require('cors')
 const { db } = require('./db')
 const createSurvey = require('./operations/createSurvey')
 const getSurvey = require('./operations/getSurvey')
@@ -13,6 +14,7 @@ const app = express()
 
 app.use(logger('dev'))
 app.use(express.json())
+app.use(cors())
 
 app.get('/surveys', getSurveys)
 app.post('/surveys', createSurvey)
@@ -20,6 +22,7 @@ app.get('/surveys/:surveyId', getSurvey)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
+  console.log(req.body)
   next(createError(404))
 })
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Axios from 'axios'
 
-const Header = () => {
+const Header = ({ getUsers }) => {
   const [first, setFirst] = useState('')
   const [last, setLast] = useState('')
   const [email, setEmail] = useState('')
@@ -13,10 +14,11 @@ const Header = () => {
   }
 
   const getLink = () => {
-    Axios.post('/surveys', { first, last, email })
+    Axios.post('http://localhost:8080/surveys', { first, last, email })
       .then(({ data }) => {
         console.log('Survey Created', data)
         clearFields()
+        getUsers()
       })
       .catch((err) => {
         console.log(err)
@@ -31,6 +33,10 @@ const Header = () => {
       <button onClick={getLink}>Get Link</button>
     </>
   )
+}
+
+Header.propTypes = {
+  getUsers: PropTypes.func
 }
 
 export default Header
