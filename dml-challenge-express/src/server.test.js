@@ -30,7 +30,7 @@ describe('Server endpoints', () => {
       last: 'Schmoe',
       email: 'Joe@schmoe.com'
     }
-    it('should return a 200 status code for valid creation', async () => {
+    it('should return a 201 status code for valid creation', async () => {
       const res = await request.post('/surveys').send(data)
       expect(res.status).toBe(201)
     })
@@ -40,20 +40,38 @@ describe('Server endpoints', () => {
       expect(res.body).not.toBeNull()
       expect(res.body).toHaveProperty('first')
       expect(res.body.first).toBe(data.first)
-      expect(res.body.response).toBeNull()
+      expect(res.body.response).toBe(undefined)
       expect(res.body.uuid).toHaveLength(36)
     })
 
     describe('retrieval of users after creation', () => {
       it('should return all the users that have been added', async () => {
         const res = await request.get('/surveys')
-        console.log(res.body)
         expect(res.body).toHaveLength(2)
       })
     })
   })
 
-  describe('Patch request for saving a users survey response', () => {
+  describe('Patch request for saving a users survey response', async () => {
+    let uuid
+    beforeAll(async () => {
+      const { body } = await request.get('/surveys')
+      uuid = body[0].uuid
+    })
 
+    it('should return a 404 status code for an invalid requests', async () => {
+      const res = await request.patch('/surveys/938932').send({ answer: 'gold' })
+      expect(res.status).toBe(404)
+    })
+
+    it('should return a 200 status code for a valid request', async () => {
+      const res = await request.patch(`/surveys/${uuid}`).send({ answer: 'gold' })
+      expect(res.status).toBe(200)
+    })
+
+    it('should have updated the users response', async () => {
+      const { body } = await request.get('/surveys')
+      expect(body[0].response).toBe('gold')
+    })
   })
 })

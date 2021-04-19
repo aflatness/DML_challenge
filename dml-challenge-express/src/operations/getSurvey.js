@@ -11,7 +11,7 @@ const getSurvey = async (req, res) => {
     where: { uuid: surveyId }
   })
   if (!survey) {
-    res.status(405).send()
+    res.status(404).send()
   } else {
     survey.response = answer
     await survey.save()
