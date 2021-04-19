@@ -11,7 +11,7 @@ const createSurvey = async (req, res) => {
     last,
     email
   })
-  res.send(newSurvey)
+  res.status(201).send(newSurvey)
 }
 
 module.exports = createSurvey

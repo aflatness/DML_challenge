@@ -4,7 +4,7 @@ const { Surveys } = require('../db')
 const getSurveys = async (req, res) => {
   const surveys = await Surveys.findAll({
   })
-  res.send(surveys)
+  res.status(200).send(surveys)
 }
 
 module.exports = getSurveys
