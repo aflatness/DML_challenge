@@ -9,7 +9,7 @@ const userList = ({ users, takeSurvey }) => (
         <div className='surveyStatus'>{response ? 'Completed' : 'Not Completed'}</div>
         <div className='userResponse'>{!response
           ? <button onClick={() => takeSurvey({ first, uuid })}>Copy Link</button>
-          : response}
+          : <div id={response}>{response}</div>}
         </div>
       </div>
     ))}

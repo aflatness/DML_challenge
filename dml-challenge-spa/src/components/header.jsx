@@ -14,16 +14,21 @@ const Header = ({ getUsers }) => {
   }
 
   const getLink = () => {
-    Axios.post('http://localhost:8080/surveys', { first, last, email })
-      .then(({ data }) => {
-        console.log('Survey Created', data)
-        clearFields()
-        getUsers()
-      })
-      .catch((err) => {
-        console.log(err)
-        clearFields()
-      })
+    if (first && last && email) {
+      Axios.post('http://localhost:8080/surveys', { first, last, email })
+        .then(({ data }) => {
+          console.log('Survey Created', data)
+          clearFields()
+          getUsers()
+        })
+        .catch((err) => {
+          console.log(err)
+          clearFields()
+        })
+    } else {
+      // eslint-disable-next-line no-undef
+      alert('Please fill out all user information')
+    }
   }
   return (
     <>
