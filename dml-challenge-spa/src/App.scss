@@ -37,6 +37,16 @@
   }
 }
 
+button, input {
+  cursor: pointer;
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  outline: none;
+}
+
 #getLink-Btn {
   float: right;
   margin: 1em;
@@ -46,11 +56,41 @@ input {
   margin: 1em;
 }
 
-.userList {
+.userList, .survey {
   text-align: center;
 }
 
 .userName, .surveyStatus, .userResponse {
   display: inline-block;
   margin: 1em;
+}
+.options {
+  text-align: left;
+  position: absolute;
+  left: 46vw;
+}
+
+#Red {
+  color: red;
+}
+#Orange {
+  color: orange;
+}
+#Yellow {
+  color: rgb(177, 177, 3);
+}
+#Green {
+  color: green;
+}
+#Blue {
+  color: blue;
+}
+#Purple {
+  color: purple;
+}
+
+#submitSurvey {
+  margin-left: .6em;
+  font-size: 1.2em;
+
 }

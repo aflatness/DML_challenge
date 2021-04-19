@@ -18,11 +18,10 @@ app.use(cors())
 
 app.get('/surveys', getSurveys)
 app.post('/surveys', createSurvey)
-app.get('/surveys/:surveyId', getSurvey)
+app.patch('/surveys/:surveyId', getSurvey)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  console.log(req.body)
   next(createError(404))
 })
 

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-// import options from './cors'
+import Survey from './components/survey'
 import Header from './components/header'
 import UserList from './components/userList'
 import './App.scss'
 
 const App = () => {
   const [users, setUsers] = useState([])
+  const [page, setPage] = useState('admin')
+  const [currUser, setCurrUser] = useState({})
 
   useEffect(() => {
     getUsers()
@@ -22,12 +24,26 @@ const App = () => {
         console.log(err)
       })
   }
-  return (
-    <>
-      <Header getUsers={getUsers} />
-      <UserList users={users} />
-    </>
-  )
+
+  const takeSurvey = (user) => {
+    setCurrUser(user)
+    setPage('survey')
+  }
+
+  if (page === 'admin') {
+    return (
+      <>
+        <Header getUsers={getUsers} />
+        <UserList users={users} takeSurvey={takeSurvey} />
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Survey setPage={setPage} user={currUser} getUsers={getUsers} />
+      </>
+    )
+  }
 }
 
 export default App

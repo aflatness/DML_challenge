@@ -31,6 +31,7 @@ const Header = ({ getUsers }) => {
       <input placeholder='Last Name' onChange={(e) => setLast(e.target.value)} value={last} />
       <input placeholder='Email Address' onChange={(e) => setEmail(e.target.value)} value={email} />
       <button id='getLink-Btn' onClick={getLink}>Get Link</button>
+      <hr />
     </>
   )
 }
