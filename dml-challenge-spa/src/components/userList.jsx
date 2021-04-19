@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const userList = ({ users }) => (
-  <>
+  <div className='userList'>
     {users.map(({ first, last, response }, i) => (
       <div key={i}>
         <div className='userName'>{first} {last}</div>
@@ -10,7 +10,7 @@ const userList = ({ users }) => (
         <div className='userResponse'>{response === null ? <button>Copy Link</button> : response} </div>
       </div>
     ))}
-  </>
+  </div>
 )
 
 userList.propTypes = {

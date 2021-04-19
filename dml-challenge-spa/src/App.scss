@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+#getLink-Btn {
+  float: right;
+  margin: 1em;
+}
+
+input {
+  margin: 1em;
+}
+
+.userList {
+  text-align: center;
+}
+
+.userName, .surveyStatus, .userResponse {
+  display: inline-block;
+  margin: 1em;
+}
